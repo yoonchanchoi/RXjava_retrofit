@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
-    private List<com.example.pratice_project.MainData> arrayList;
+    private List<com.example.rxjava_retrofit.MainData> arrayList;
 
-    public MainAdapter(List<com.example.pratice_project.MainData> arrayList) {
+    public MainAdapter(List<com.example.rxjava_retrofit.MainData> arrayList) {
         this.arrayList = arrayList;
     }
 
