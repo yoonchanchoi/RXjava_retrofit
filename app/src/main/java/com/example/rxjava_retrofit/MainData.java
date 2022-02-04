@@ -4,35 +4,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class MainData {
 
-    @SerializedName("userId")
-    public int userId;
-    @SerializedName("id")
-    public int id;
-    @SerializedName("title")
+//    @SerializedName("userId")
+    public String userId;
+//    @SerializedName("id")
+    public String id;
+//    @SerializedName("title")
     public String title;
-    @SerializedName("body")
+//    @SerializedName("body")
     public String body;
 
-    public MainData(int userid, int id, String title, String body) {
+    public MainData(String userid, String id, String title, String body) {
         this.userId = userid;
         this.id = id;
         this.title = title;
         this.body = body;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

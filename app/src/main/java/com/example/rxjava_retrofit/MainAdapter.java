@@ -15,11 +15,11 @@ import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
-    private Context context;
+//    private Context context;
     private List<MainData> arrayList;
 
     public MainAdapter(List<MainData> arrayList, Context context) {
-        this.context = context;
+//        this.context = context;
         this.arrayList = arrayList;
     }
 
