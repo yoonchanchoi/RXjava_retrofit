@@ -19,15 +19,14 @@ public class MainDataService {
             .build()
             .create(MainDataApi.class);
 
-
-    public static MainDataService getInstance(){
-        if (instance ==null){
+    public static MainDataService getInstance() {
+        if (instance == null) {
             instance = new MainDataService();
         }
         return instance;
     }
 
-    public Single<List<MainData>> getMainData(){
+    public Single<List<MainData>> getMainData() {
         return api.getMainData();
     }
 }
