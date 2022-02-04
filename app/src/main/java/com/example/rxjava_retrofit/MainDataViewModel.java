@@ -22,6 +22,8 @@ public class MainDataViewModel extends ViewModel {
 
     public MutableLiveData<List<MainData>> mainArrayList = new MutableLiveData<>();
     public MutableLiveData<String> toastMassage = new MutableLiveData<>();
+    public MutableLiveData<Boolean> loading = new MutableLiveData<>();
+
 
     // os에 의해 앱의 프로세스가 죽거는 등의 상황에서
     // Single 객체를 가로채기 위함
@@ -32,7 +34,11 @@ public class MainDataViewModel extends ViewModel {
     }
 
     private void fetchCountries() {
-        // 서버로부터 데이터를 받아오는 동안에 로딩 스피너를 보여주기 위함
+        //로딩 데이터를 보여줌일단
+        //서버로부터 데이터를 받아오는 동안에 로딩 스피너를 보여주기 위함
+        loading.setValue(true);
+        //disposable 메모리 관리 해주는 것
+        //메모리 할당 add로 즉 레트로핏에서 가져온 데이터를 넣어줍니다.
         disposable.add(mainDataService.getMainData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -42,30 +48,21 @@ public class MainDataViewModel extends ViewModel {
                             @Override
                             public void onSuccess(List<MainData> mainData) {
                                 mainArrayList.setValue(mainData);
-                                Log.d("livedataTest2", mainArrayList.getValue().toString());
+                                //데이터를 성공적 통신해서 받으면 로딩끝
+                                loading.setValue(false);
+//                                Log.d("livedataTest2", mainArrayList.getValue().toString());
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.d("livedataTest3", mainArrayList.toString());
+//                                Log.d("livedataTest3", mainArrayList.toString());
+                                //통신에 실패하면 로딩끝 실패 토스트메세지 발송
+                                loading.setValue(false);
                                 toastMassage.setValue("실패");
                             }
                         }
                 ));
-//        mainDataService.getMainData()
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new DisposableSingleObserver<List<MainData>>() {
-//                               @Override
-//                               public void onSuccess(List<MainData> mainData) {
-//
-//                               }
-//
-//                               @Override
-//                               public void onError(Throwable e) {
-//
-//                               }
-//                           }
-//                );
+
     }
 
 
